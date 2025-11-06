@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
 use work.tipo.all;
-entity shuffling is 
+entity deshuffling is 
 generic(
  filas : integer := 10; 
  columnas : integer := 10;
@@ -14,11 +14,12 @@ port(
  clk : in std_logic;
  reset : in std_logic;
  matrix_in : in matrix(0 to filas-1, 0 to columnas-1); 
- matrix_out : out matrix(0 to filas-1, 0 to columnas-1) 
+ matrix_out : out matrix(0 to filas-1, 0 to columnas-1);
+ done        : out std_logic
 );
-end entity shuffling;
+end entity deshuffling;
 
-architecture Behavorial of shuffling is
+architecture Behavorial of deshuffling is
  type Estados is (State0, State1, State2, State3, State4, State5, State6, State7, State8);
  signal estado_actual, estado_siguiente : Estados := State0; 
  signal row, col : integer :=0; 
@@ -326,7 +327,7 @@ begin
     index:=index+1;
    end loop;
   end loop;
-  estado_siguiente<=State9;
+  estado_siguiente<=State0;
  end case;
 end process;
 end architecture behavorial;

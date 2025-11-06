@@ -49,7 +49,7 @@ begin
  begin
   if rising_edge(clk) then
    if reset='1' then
-    estado_actual <= Start;
+    estado_actual <= State0;
    else
     estado_actual <= estado_siguiente;
    end if;
